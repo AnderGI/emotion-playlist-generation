@@ -4,8 +4,8 @@ export class ImageToEmotionConverter {
     constructor(repository) {
         this.repository = repository;
     }
-    async convert(imageMetadata) {
-        const image = Image.create(imageMetadata);
+    async convert() {
+        const image = Image.create();
         return await this.repository.generate(image);
     }
 }

@@ -4,7 +4,7 @@ export class Image {
     constructor(id) {
         this.id = id;
     }
-    static create(metadata) {
+    static create() {
         return new Image(UUID.random());
     }
     imageIddValue() {

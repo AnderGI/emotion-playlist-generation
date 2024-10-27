@@ -1,5 +1,6 @@
-import { EmotionName } from '../../../src/image-to-emotion/domain/EmotionName';
-import {faker, type Faker} from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
+import { EmotionName } from '../../../../../src/contexts/backoffice/image-to-emotion/domain/EmotionName.js';
+
 export class EmotionNameMother {
   private static readonly emotions:string[] = ['rage', 'anger', 'anxiety', 'happiness', 'joy', 'curiosity'];
   static create(value?: string): EmotionName {

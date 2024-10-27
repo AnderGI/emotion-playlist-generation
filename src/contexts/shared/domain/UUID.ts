@@ -1,6 +1,5 @@
 import { validate } from "uuid";
 import { InvalidIdException } from "./InvalidIdException.js";
-import { DomainException } from "./DomainException.js";
 import { randomUUID } from "crypto";
 import { StringValueObject } from "./StringValueObject.js";
 

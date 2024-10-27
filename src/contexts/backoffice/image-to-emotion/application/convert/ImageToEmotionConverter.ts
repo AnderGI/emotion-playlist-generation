@@ -7,8 +7,8 @@ import { ImageToEmotionRepository } from "../../domain/ImageToEmotionRepository.
 export class ImageToEmotionConverter {
   constructor(private repository: ImageToEmotionRepository) { }
 
-  public async convert(imageMetadata: string): Promise<ImageToEmotion> {
-    const image: Image = Image.create(imageMetadata);
+  public async convert(): Promise<ImageToEmotion> {
+    const image: Image = Image.create();
     return await this.repository.generate(image);
   }
 

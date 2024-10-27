@@ -1,8 +1,7 @@
-import { Image } from '../../../src/image-to-emotion/domain/Image';
-import {faker, type Faker} from '@faker-js/faker';
+import { Image } from "../../../../../src/contexts/backoffice/image-to-emotion/domain/Image.js";
 
 export class ImageMother {
-  static create(value?: string): Image {
-    return new Image(value ?? faker.);
+  static create(value: string): Image {
+    return Image.create(value);
   }
 }
