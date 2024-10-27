@@ -1,13 +1,29 @@
-import { configDotenv } from "dotenv";
 import express, { Router } from "express";
-configDotenv();
-const app = express();
-const port = parseInt(process?.env?.DEV_PORT ?? "3000");
-const router = Router();
-router.get("/healthcheck", (req, res) => {
-    res.json({ "message": "It works" });
-});
-app.use(router);
-app.listen(port, () => {
-    console.log(`listening at http://localhost:${port}`);
-});
+import { RoutesRegistar } from "./routes/RoutesRegistar.js";
+export class Server {
+    port;
+    app;
+    router;
+    server;
+    constructor(port) {
+        this.port = port;
+        this.app = express();
+        this.router = Router();
+        this.app.use(this.router);
+        (new RoutesRegistar(this.router)).registerRoutes();
+    }
+    listen() {
+        this.server = this.app.listen(this.port, () => {
+            console.log(`Server listening at http://localhost:${this.port}`);
+        });
+    }
+    stop() {
+        if (this.server) {
+            this.server.close((err) => {
+                if (err) {
+                    console.log(`Error stoping the server try CTRL+C`);
+                }
+            });
+        }
+    }
+}

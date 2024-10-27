@@ -23,7 +23,7 @@ export class Server {
     if(this.server) {
       this.server.close((err) => {
         if(err){
-          console.log(`Error stoping the server try CTRL + C`)
+          console.log(`Error stoping the server try CTRL+C`)
         }
       })
     }
