@@ -1,9 +1,9 @@
 import { EmotionName } from "./EmotionName.js";
-import { Id } from "./Id.js";
+import { UUID } from "../../../shared/domain/UUID.js";
 import { Image } from "./Image.js";
 
 export class ImageToEmotion {
-  constructor(private readonly id:Id, private readonly image:Image, private readonly emotionName:EmotionName) {
+  constructor(private readonly id:UUID, private readonly image:Image, private readonly emotionName:EmotionName) {
     
   }
 
@@ -11,8 +11,8 @@ export class ImageToEmotion {
     return this.id.idValue();
   }
 
-  public imageMetadataValue():string{
-    return this.image.imageMetadata();
+  public imageIdValue():string{
+    return this.image.imageIddValue();
   }
 
   public emotionNameValue():string{

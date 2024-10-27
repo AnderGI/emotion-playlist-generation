@@ -3,3 +3,4 @@ export abstract class DomainException extends Error{
     super(mssg);
   }
 }
+

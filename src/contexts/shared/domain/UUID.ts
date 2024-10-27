@@ -2,14 +2,16 @@ import { validate } from "uuid";
 import { InvalidIdException } from "./InvalidIdException.js";
 import { DomainException } from "./DomainException.js";
 import { randomUUID } from "crypto";
+import { StringValueObject } from "./StringValueObject.js";
 
-export class Id {
-  private constructor (private readonly value:string){
+export class UUID extends StringValueObject {
+  private constructor (value:string){
+    super(value);
     this.ensureValidId(value);
   }
 
-  public static random():Id {
-    return new Id(randomUUID());
+  public static random():UUID {
+    return new UUID(randomUUID());
   }
 
   // como hacer para poder definir lanzamiento de excepcciones en ts

@@ -5,4 +5,8 @@ export class EmotionName {
   public emotionName():string{
     return this.value;
   }
+
+  public static create(value:string):EmotionName{
+    return new EmotionName(value);
+  }
 }
