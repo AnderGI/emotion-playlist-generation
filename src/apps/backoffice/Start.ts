@@ -2,6 +2,7 @@ import { BackofficeBackendApp } from "./BackofficeBackendApp.js";
 
 try{
   (new BackofficeBackendApp()).start()
-} catch {
+} catch(err) {
+  console.log(err)
   process.exit(1)
 }

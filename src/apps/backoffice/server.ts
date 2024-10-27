@@ -1,5 +1,6 @@
 import express, {Router} from "express";
 import * as http from "http";
+import { RoutesRegistar } from "./routes/RoutesRegistar.js";
 
 export class Server {
   private app:express.Express;
@@ -9,6 +10,7 @@ export class Server {
     this.app = express();
     this.router = Router();
     this.app.use(this.router);
+    (new RoutesRegistar(this.router)).registerRoutes()
   }
 
   public listen():void {

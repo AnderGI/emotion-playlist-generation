@@ -1,4 +1,4 @@
-import { Controller } from "../../controller/Controller.js";
+import { Controller } from "../Controller.js";
 import { Request, Response } from 'express';
 
 export class StatusHealhCheckGetController implements Controller{

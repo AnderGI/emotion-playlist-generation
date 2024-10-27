@@ -1,4 +1,5 @@
-import { Server } from "./server.js";
+import { Server } from "./Server.js";
+
 export class BackofficeBackendApp {
   private server?:Server;
   constructor (){}
