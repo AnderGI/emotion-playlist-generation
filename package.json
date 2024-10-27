@@ -8,7 +8,7 @@
     "from:eslintrc:to:eslintconfig:migration": "npx @eslint/migrate-config .eslintrc.json",
     "apps:backoffice:server": "npx tsx ./src/apps/backoffice/server.ts",
     "lint:src" : "npx eslint ./src/",
-    "build:prod": "tsc -p tsconfig.prod.json",
+    "build:prod": "tsc -p tsconfig.prod.json"
   },
   "keywords": [],
   "author": "",
