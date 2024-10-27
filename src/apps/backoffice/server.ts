@@ -1,17 +1,30 @@
-import { configDotenv } from "dotenv";
-import express, {Router, Request, Response}  from "express";
-configDotenv()
-const app: express.Express = express();
-const port:number = parseInt(process?.env?.DEV_PORT ?? "3000");
+import express, {Router} from "express";
+import * as http from "http";
 
-const router = Router();
+export class Server {
+  private app:express.Express;
+  private router:Router;
+  private server?:http.Server;
+  constructor(private readonly port:number){
+    this.app = express();
+    this.router = Router();
+    this.app.use(this.router);
+  }
 
-router.get("/healthcheck", (req: Request, res: Response) => {
-  res.json({"message": "It works"})
-})
+  public listen():void {
+    this.server =  this.app.listen(this.port, () => {
+      console.log(`Server listening at http://localhost:${this.port}`);
+    })
+  }
 
+  public stop():void {
+    if(this.server) {
+      this.server.close((err) => {
+        if(err){
+          console.log(`Error stoping the server try CTRL + C`)
+        }
+      })
+    }
+  }
 
-app.use(router)
-app.listen(port, () => {
-  console.log(`listening at http://localhost:${port}`)
-})
+}

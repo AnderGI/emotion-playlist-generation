@@ -7,7 +7,7 @@
   "scripts": {
     "from:eslintrc:to:eslintconfig:migration": "npx @eslint/migrate-config .eslintrc.json",
     "apps:backoffice:server": "npx tsx ./src/apps/backoffice/server.ts",
-    "lint:src" : "npx eslint ./src/",
+    "lint:src": "npx eslint ./src/",
     "build:prod": "tsc -p tsconfig.prod.json"
   },
   "keywords": [],
@@ -38,6 +38,7 @@
     "@types/uuid": "^10.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "http": "^0.0.1-security",
     "langchain": "^0.3.2",
     "uuid": "^10.0.0"
   }
