@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Remove build. Clean action.
-        run: npx rimraf ./build
+        run: npm run clean
 
       - name: Run linter
         run: npm run lint:src
