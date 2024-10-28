@@ -1,13 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./build",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ES2020",
     "declaration": false,
     "removeComments": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "tests"]
 }
