@@ -10,7 +10,6 @@ export class UUID extends StringValueObject {
     static random() {
         return new UUID(randomUUID());
     }
-    // como hacer para poder definir lanzamiento de excepcciones en ts
     ensureValidId(value) {
         const valid = validate(value);
         if (!valid) {

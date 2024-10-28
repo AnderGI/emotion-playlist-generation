@@ -1,6 +1,5 @@
 import { Server } from "./Server.js";
 export class BackofficeBackendApp {
-    server;
     constructor() { }
     start() {
         const port = parseInt(process.env.DEV_PORT ?? '3000') ?? 3000;

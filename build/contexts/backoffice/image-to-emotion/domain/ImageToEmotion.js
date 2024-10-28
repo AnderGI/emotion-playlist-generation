@@ -1,7 +1,4 @@
 export class ImageToEmotion {
-    id;
-    image;
-    emotionName;
     constructor(id, image, emotionName) {
         this.id = id;
         this.image = image;

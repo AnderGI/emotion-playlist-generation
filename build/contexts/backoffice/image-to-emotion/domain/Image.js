@@ -1,6 +1,5 @@
 import { UUID } from "../../../shared/domain/UUID.js";
 export class Image {
-    id;
     constructor(id) {
         this.id = id;
     }

@@ -1,4 +1,15 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "tests"]
+  "compilerOptions": {
+    "outDir": "./build",               // Carpeta de salida
+    "rootDir": "./src",                // Carpeta fuente
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES2020",                // Ajusta según el entorno
+    "declaration": false,
+    "sourceMap": false,                // Opcional: si no necesitas mapas de fuente
+    "removeComments": true             // Limpia comentarios en el código generado
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "tests"] // Asegura que se excluyan los tests
 }

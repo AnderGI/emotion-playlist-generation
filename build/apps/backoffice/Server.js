@@ -1,10 +1,6 @@
 import express, { Router } from "express";
 import { RoutesRegistar } from "./routes/RoutesRegistar.js";
 export class Server {
-    port;
-    app;
-    router;
-    server;
     constructor(port) {
         this.port = port;
         this.app = express();
