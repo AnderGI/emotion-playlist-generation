@@ -1,4 +1,4 @@
-/* import { Server } from "./Server.js";
+import { Server } from "./Server.js";
 
 export class BackofficeBackendApp {
   private server?:Server;
@@ -15,4 +15,4 @@ export class BackofficeBackendApp {
       this.server.stop();
     }
   }
-} */
+}
