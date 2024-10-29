@@ -2,7 +2,7 @@ import express, {Router} from "express";
 import * as http from "http";
 import { RoutesRegistar } from "./routes/RoutesRegistar.js";
 
-export class ExpressServer {
+export class BackofficeBackendExpressServer {
   private app:express.Express;
   private router:Router;
   private server?:http.Server;
