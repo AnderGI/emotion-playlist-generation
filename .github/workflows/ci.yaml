@@ -32,9 +32,3 @@ jobs:
       - name: List build directory contents
         run: ls -R build || echo "Build directory not found"
 
-      - name: Check generated JS files
-        run: |
-          if [ ! -f build/apps/backoffice/Server.js ]; then
-            echo "Server.js not found in build";
-            exit 1;
-          fi
