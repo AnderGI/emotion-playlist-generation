@@ -1,12 +1,13 @@
-import { Server } from "./Server.js";
+import { ExpressServer } from "./Server.js";
+
 
 export class BackofficeBackendApp {
-  private server?:Server;
+  private server?:ExpressServer;
   constructor (){}
 
   public start():void{
     const port:number = parseInt(process.env.DEV_PORT ?? '3000') ?? 3000;
-    this.server = new Server(port);
+    this.server = new ExpressServer(port);
     this.server.listen();
   }
 
