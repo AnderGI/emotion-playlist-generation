@@ -43,6 +43,7 @@
     "glob": "^11.0.0",
     "http": "^0.0.1-security",
     "langchain": "^0.3.2",
+    "node-dependency-injection": "2.6.11",
     "uuid": "^10.0.0"
   }
 }
