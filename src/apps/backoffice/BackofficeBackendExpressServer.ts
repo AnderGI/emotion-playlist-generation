@@ -29,4 +29,7 @@ export class BackofficeBackendExpressServer {
     }
   }
 
+  public getApp():express.Express{
+    return this.app;
+  }
 }
