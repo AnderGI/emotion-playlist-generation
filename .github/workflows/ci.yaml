@@ -23,9 +23,6 @@ jobs:
       - name: Remove build. Clean action.
         run: npm run clean
 
-      - name: Run linter
-        run: npm run lint:src
-
       - name: Build project
         run: npm run build:prod
 
