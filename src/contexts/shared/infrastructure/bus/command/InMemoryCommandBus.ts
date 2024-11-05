@@ -1,7 +1,7 @@
-import { Command } from "../../../../contexts/shared/domain/bus/command/Command.js";
-import { CommandBus } from "../../../../contexts/shared/domain/bus/command/CommandBus.js";
-import { CommandHandler } from "../../../../contexts/shared/domain/bus/command/CommandHandler.js";
-import { CommandHandlers } from "../../../../contexts/shared/domain/bus/command/CommandHandlers.js";
+import { Command } from "../../../domain/bus/command/Command.js";
+import { CommandBus } from "../../../domain/bus/command/CommandBus.js";
+import { CommandHandler } from "../../../domain/bus/command/CommandHandler.js";
+import { CommandHandlers } from "../../../domain/bus/command/CommandHandlers.js";
 
 export class InMemoryCommandBus implements CommandBus{
   constructor (private commandHandlers:CommandHandlers){}
