@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CommandBus } from '../../../../contexts/shared/domain/bus/command/CommandBus.js';
-import { SubmitImagesCommand } from '../../../../contexts/backoffice/image/application/submit/SubmitImagesCommand.js';
+import { SubmitImagesCommand } from '../../../../contexts/backoffice/image/application/save/SaveImagesCommand.js';
 
 export class SubmitImagePutController {
   constructor(private commandBus: CommandBus) {}
