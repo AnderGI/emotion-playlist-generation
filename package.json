@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "from:eslintrc:to:eslintconfig:migration": "npx @eslint/migrate-config .eslintrc.json",
-    "apps:backoffice:server": "npx tsx ./src/apps/backoffice/Start.ts",
+    "apps:backoffice:server:watch": "npx tsx watch ./src/apps/backoffice/Start.ts",
     "lint:src": "npx eslint ./src/",
     "build:prod": "tsc -p tsconfig.prod.json",
     "clean": "npx rimraf ./build"
@@ -32,6 +32,7 @@
   "dependencies": {
     "@langchain/community": "^0.3.7",
     "@langchain/core": "^0.3.13",
+    "@types/multer": "^1.4.12",
     "@types/uuid": "^10.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
@@ -39,6 +40,7 @@
     "glob": "^11.0.0",
     "http": "^0.0.1-security",
     "langchain": "^0.3.2",
+    "multer": "^1.4.5-lts.1",
     "node-dependency-injection": "2.6.11",
     "uuid": "^10.0.0"
   }

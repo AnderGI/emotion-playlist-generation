@@ -1,9 +1,22 @@
 services:
+  backoffice.image.SubmitImagesCommandHandler:
+    class: ../../../../contexts/backoffice/image/application/submit/SubmitImagesCommandHandler
+    arguments: []
+    tags:
+      - {name: commandHandler}
 
-  Apps.backoffice.controllers.StatusHealhCheckGetController:
+  apps.backoffice.controllers.StatusHealhCheckGetController:
     class: ../../controllers/health-check/StatusHealhCheckGetController
     arguments: []
 
-  Apps.backoffice.controllers.SubmitImagePutController:
+  shared.CommandHandlers:
+    class: ../../../../contexts/shared/domain/bus/command/CommandHandlers
+    arguments: ['!tagged commandHandler'] 
+
+  shared.CommandBus:
+    class: ../../../../contexts/shared/domain/bus/command/CommandBus
+    arguments: ['@Shared.CommandHandlers']
+
+  apps.backoffice.controllers.SubmitImagePutController:
     class: ../../controllers/submit-image/SubmitImagePutController
-    arguments: []
+    arguments: ['@Shared.CommandBus']
