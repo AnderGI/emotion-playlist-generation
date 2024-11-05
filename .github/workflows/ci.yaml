@@ -23,6 +23,9 @@ jobs:
       - name: Remove build. Clean action.
         run: npm run clean
 
+      - name: Lint proyect.
+        run: npm run lint:src
+
       - name: Build project
         run: npm run build:prod
 

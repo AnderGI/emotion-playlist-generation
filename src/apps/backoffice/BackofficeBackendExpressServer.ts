@@ -10,7 +10,11 @@ export class BackofficeBackendExpressServer {
     this.app = express();
     this.router = Router();
     this.app.use(this.router);
-    (new RoutesRegistar(this.router)).registerRoutes()
+  }
+
+  public async init(): Promise<void> {
+    await new RoutesRegistar(this.router).registerRoutes();
+    console.log('Express server init')
   }
 
   public listen():void {

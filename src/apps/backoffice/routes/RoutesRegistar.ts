@@ -10,13 +10,13 @@ const __dirname = path.dirname(__filename);
 export class RoutesRegistar {
   constructor(private router: Router) {}
 
-  public registerRoutes(): void {
-    //console.log(path.join(__dirname, "/**/*.route.ts"));
-    const routes: string[] = glob.sync(__dirname + "/**/*.route.ts");
-   // console.log(routes);
+  public async registerRoutes(): Promise<void> {
 
+    const routes: string[] = glob.sync(__dirname + "/**/*.route.ts");
+
+    
     // Mapea cada ruta y la registra
-    routes.map(route => this.registerRoute(route));
+    await Promise.all(routes.map(route => this.registerRoute(route)));
   }
 
   private async registerRoute(routePath: string): Promise<void> {

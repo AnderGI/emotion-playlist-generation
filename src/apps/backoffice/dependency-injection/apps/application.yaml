@@ -3,3 +3,7 @@ services:
   Apps.backoffice.controllers.StatusHealhCheckGetController:
     class: ../../controllers/health-check/StatusHealhCheckGetController
     arguments: []
+
+  Apps.backoffice.controllers.SubmitImagePutController:
+    class: ../../controllers/submit-image/SubmitImagePutController
+    arguments: []
