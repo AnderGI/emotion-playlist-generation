@@ -1,5 +1,4 @@
 import { Command } from "../../../../shared/domain/bus/command/Command.js";
-import { Image } from "../../domain/Image.js";
 import { ImagePrimitives } from "../../domain/ImagePrimitives.js";
 
 export class SaveImageCommand implements Command{
