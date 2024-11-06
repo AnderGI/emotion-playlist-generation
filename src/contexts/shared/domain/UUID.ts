@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 import { StringValueObject } from "./StringValueObject.js";
 
 export class UUID extends StringValueObject {
-  private constructor (value:string){
+  public constructor (value:string){
     super(value);
     this.ensureValidId(value);
   }
