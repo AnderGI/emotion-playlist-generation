@@ -9,10 +9,14 @@ import { ImagePath } from "../../../../../../src/contexts/backoffice/image/domai
 import { ImagePathMother } from "../../domain/ImagePathMother.js";
 import { ImageId } from "../../../../../../src/contexts/backoffice/image/domain/ImageId.js";
 import { ImageIdMother } from "../../domain/ImageIdMother.js";
+import { DomainEvent } from "../../../../../../src/contexts/shared/domain/bus/event/DomainEvent.js";
+import { EventBus } from "../../../../../../src/contexts/shared/domain/bus/event/EventBus.js";
+import { ImageCreatedDomainEvent } from "../../../../../../src/contexts/backoffice/image/domain/ImageCreatedDomainEvent.js";
 
 describe('Image Saver', () => {
   const givenAMockImageRepository = (): ImageRepository => ({save: jest.fn((image: Image) => Promise.resolve())})
-  const givenAnImageSaver = (repository:ImageRepository) : ImageSaver => new ImageSaver(repository)
+  const givenAMockEventBus = (): EventBus => ({publish: jest.fn((events: Array<DomainEvent>) => Promise.resolve())})  
+  const givenAnImageSaver = (repository:ImageRepository, eventBus:EventBus) : ImageSaver => new ImageSaver(repository, eventBus)
   const givenARandomImage = () : Image => ImageMother.random();
   const givenASaveImageCommandFromImage = (image:Image) : SaveImageCommand => SaveImageCommand.fromImagePrimitives(image.toPrimitives()); 
   const givenASaveImageCommandHandler = (saver:ImageSaver) : SaveImageCommandHandler => new SaveImageCommandHandler(saver);
@@ -20,7 +24,8 @@ describe('Image Saver', () => {
 
   it('Should save image', async () => {
     const repository:ImageRepository = givenAMockImageRepository() 
-    const saver:ImageSaver = givenAnImageSaver(repository)
+    const eventBus:EventBus = givenAMockEventBus();
+    const saver:ImageSaver = givenAnImageSaver(repository, eventBus);
     const image:Image = givenARandomImage();
     const command:SaveImageCommand = givenASaveImageCommandFromImage(image);
     const handler:SaveImageCommandHandler = givenASaveImageCommandHandler(saver);
@@ -28,9 +33,14 @@ describe('Image Saver', () => {
     await handler.handle(command);
     
     expect(repository.save).toHaveBeenCalled()
+    expect(eventBus.publish).toHaveBeenCalled()
+    const imageCreatedDomainEvents:Array<ImageCreatedDomainEvent> = (eventBus.publish as jest.Mock).mock.calls[0][0] as Array<ImageCreatedDomainEvent>;
     const createdImage:Image = (repository.save as jest.Mock).mock.calls[0][0] as Image; 
+
     expect(repository.save).toHaveBeenCalledWith(createdImage)
+    expect(imageCreatedDomainEvents[0]).toBeInstanceOf(ImageCreatedDomainEvent)
     expect(repository.save).toHaveBeenCalledTimes(1)
+    expect(eventBus.publish).toHaveBeenCalledTimes(1)
   })
 })
 
