@@ -1,7 +1,10 @@
 services:
+  backoffice.image.ImageSaver:
+    class: ../../../../contexts/backoffice/image/application/save/ImageSaver
+
   backoffice.image.SubmitImagesCommandHandler:
-    class: ../../../../contexts/backoffice/image/application/submit/SubmitImagesCommandHandler
-    arguments: []
+    class: ../../../../contexts/backoffice/image/application/save/SubmitImagesCommandHandler
+    arguments: ['@backoffice.image.ImageSaver']
     tags:
       - {name: commandHandler}
 
@@ -15,8 +18,8 @@ services:
 
   shared.CommandBus:
     class: ../../../../contexts/shared/domain/bus/command/CommandBus
-    arguments: ['@Shared.CommandHandlers']
+    arguments: ['@shared.CommandHandlers']
 
   apps.backoffice.controllers.SubmitImagePutController:
     class: ../../controllers/submit-image/SubmitImagePutController
-    arguments: ['@Shared.CommandBus']
+    arguments: ['@shared.CommandBus']

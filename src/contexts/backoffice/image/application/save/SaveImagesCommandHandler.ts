@@ -1,9 +1,10 @@
 import { Command } from "../../../../shared/domain/bus/command/Command.js";
 import { CommandHandler } from "../../../../shared/domain/bus/command/CommandHandler.js";
+import { ImageSaver } from "./ImageSaver.js";
 import { SubmitImagesCommand } from "./SaveImagesCommand.js";
 
 export class SubmitImagesCommandHandler implements CommandHandler<SubmitImagesCommand>{
-  constructor (){}
+  constructor (private imageSaver:ImageSaver){}
   subscribedTo(): Command {
     return SubmitImagesCommand;
   }
