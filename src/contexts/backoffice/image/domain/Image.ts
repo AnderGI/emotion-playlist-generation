@@ -1,16 +1,23 @@
+import { AggregateRoot } from "../../../shared/domain/AggregateRoot.js";
+import { ImageCreatedDomainEvent } from "./ImageCreatedDomainEvent.js";
 import { ImageId } from "./ImageId.js";
 import { ImagePath } from "./ImagePath.js";
 import { ImagePrimitives } from "./ImagePrimitives.js";
 
-export class Image {
+export class Image extends AggregateRoot{
 
-  constructor(private readonly id:ImageId, private path:ImagePath){}
+  constructor(private readonly id:ImageId, private path:ImagePath){
+    super();
+  }
 
   public static create(uuid:string, path:string):Image{
-    return new Image(
-      new ImageId(uuid),
-      new ImagePath(path)
-    );
+    const image:Image = new Image(new ImageId(uuid),new ImagePath(path));
+    image.record(ImageCreatedDomainEvent.fromPrimitives({
+      aggregateId: image.getId(),
+      attributes: {
+        path: image.getPath()
+      }}))
+    return image; 
   }
    
   public toPrimitives():ImagePrimitives {
