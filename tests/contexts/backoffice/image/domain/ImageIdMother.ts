@@ -1,5 +1,6 @@
 import { ImageId } from "../../../../../src/contexts/backoffice/image/domain/ImageId";
 import {faker} from '@faker-js/faker';
+import { UUID } from "../../../../../src/contexts/shared/domain/UUID";
 
 export class ImageIdMother {
   static create(value:string): ImageId {
@@ -7,6 +8,6 @@ export class ImageIdMother {
   }
 
   static random():ImageId{
-    return new ImageId(faker.string.uuid())
+    return new ImageId(UUID.random().toString())
   }
 }
