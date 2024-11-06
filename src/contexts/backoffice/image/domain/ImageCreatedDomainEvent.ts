@@ -34,8 +34,8 @@ export class ImageCreatedDomainEvent extends DomainEvent {
   static fromPrimitives(params: {
     aggregateId: string;
     attributes: ImageCreatedDomainEventAttributes;
-    eventId: string;
-    occurredOn: Date;
+    eventId?: string;
+    occurredOn?: Date;
   }): DomainEvent {
     const { aggregateId, attributes, occurredOn, eventId } = params;
     return new ImageCreatedDomainEvent({
