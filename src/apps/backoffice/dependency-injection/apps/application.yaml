@@ -1,7 +1,11 @@
 services:
+  backoffice.image.ImageRepository:
+   class: ../../../../contexts/backoffice/image/infrastructure/persistence/InMemoryImageRepository
+
   backoffice.image.ImageSaver:
     class: ../../../../contexts/backoffice/image/application/save/ImageSaver
-
+    arguments: ['@backoffice.image.ImageRepository']
+    
   backoffice.image.SaveImageCommandHandler:
     class: ../../../../contexts/backoffice/image/application/save/SaveImageCommandHandler
     arguments: ['@backoffice.image.ImageSaver']
@@ -17,7 +21,7 @@ services:
     arguments: ['!tagged commandHandler'] 
 
   shared.CommandBus:
-    class: ../../../../contexts/shared/domain/bus/command/CommandBus
+    class: ../../../../contexts/shared/infrastructure/bus/command/InMemoryCommandBus
     arguments: ['@shared.CommandHandlers']
 
   apps.backoffice.controllers.SubmitImagePutController:

@@ -14,7 +14,7 @@ describe('Image Saver', () => {
   const givenAMockImageRepository = (): ImageRepository => ({save: jest.fn((image: Image) => Promise.resolve())})
   const givenAnImageSaver = (repository:ImageRepository) : ImageSaver => new ImageSaver(repository)
   const givenARandomImage = () : Image => ImageMother.random();
-  const givenASaveImageCommandFromImage = (image:Image) : SaveImageCommand => SaveImageCommand.fromImage(image); 
+  const givenASaveImageCommandFromImage = (image:Image) : SaveImageCommand => SaveImageCommand.fromImagePrimitives(image); 
   const givenASaveImageCommandHandler = (saver:ImageSaver) : SaveImageCommandHandler => new SaveImageCommandHandler(saver);
 
 

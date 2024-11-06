@@ -1,11 +1,12 @@
 import { Command } from "../../../../shared/domain/bus/command/Command.js";
 import { Image } from "../../domain/Image.js";
+import { ImagePrimitives } from "../../domain/ImagePrimitives.js";
 
 export class SaveImageCommand implements Command{
-  constructor (private id:string, private path:string){}
+  private constructor (private id:string, private path:string){}
   
-  public static fromImage(image:Image):SaveImageCommand {
-    return new SaveImageCommand(image.getId(), image.getPath());
+  public static fromImagePrimitives(imagePrimitives:ImagePrimitives):SaveImageCommand {
+    return new SaveImageCommand(imagePrimitives.id, imagePrimitives.path);
   }
 
   public getId():string{
