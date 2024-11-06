@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CommandBus } from '../../../../contexts/shared/domain/bus/command/CommandBus.js';
-import { SubmitImagesCommand } from '../../../../contexts/backoffice/image/application/save/SaveImagesCommand.js';
+import { SaveImageCommand } from '../../../../contexts/backoffice/image/application/save/SaveImageCommand.js';
 
 export class SubmitImagePutController {
   constructor(private commandBus: CommandBus) {}
@@ -12,7 +12,7 @@ export class SubmitImagePutController {
     const images = files['gallery'];
     if (!images || images.length <= 0) res.status(400).send();
     
-    const command:SubmitImagesCommand = new SubmitImagesCommand(images.map(image => image.path));
+    const command:SaveImageCommand = new SaveImageCommand(images.map(image => image.path));
     this.commandBus.dispatch(command);
 
     res.status(201).send();

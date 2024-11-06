@@ -2,8 +2,8 @@ services:
   backoffice.image.ImageSaver:
     class: ../../../../contexts/backoffice/image/application/save/ImageSaver
 
-  backoffice.image.SubmitImagesCommandHandler:
-    class: ../../../../contexts/backoffice/image/application/save/SubmitImagesCommandHandler
+  backoffice.image.SaveImageCommandHandler:
+    class: ../../../../contexts/backoffice/image/application/save/SaveImageCommandHandler
     arguments: ['@backoffice.image.ImageSaver']
     tags:
       - {name: commandHandler}
