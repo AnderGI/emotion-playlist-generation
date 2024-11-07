@@ -1,7 +1,6 @@
 import { ContainerBuilder, Definition } from "node-dependency-injection";
 import { DomainEvent } from "./DomainEvent.js";
 import { DomainEventSubscriber } from "./DomainEventSubscriber.js";
-import { collapseDocs } from "langchain/chains/combine_documents/reduce";
 import container from "../../../../../apps/backoffice/dependency-injection/index.js";
 
 export class DomainEventSubscribers {

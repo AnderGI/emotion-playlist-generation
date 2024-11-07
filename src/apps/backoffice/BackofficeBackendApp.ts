@@ -30,7 +30,7 @@ export class BackofficeBackendApp {
 
   private async configureEventBus():Promise<void> {
     const eventBus:EventBus = container.get('shared.EventBus') as EventBus;
-    eventBus.addSubscribers(DomainEventSubscribers.fromContainer(container))
+    await eventBus.addSubscribers(DomainEventSubscribers.fromContainer(container))
     return Promise.resolve();
   } 
 }

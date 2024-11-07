@@ -18,7 +18,7 @@ export class InMemorySyncEventBus extends Map<string, Array<DomainEventSubscribe
     return Promise.resolve();
   }
 
-  addSubscribers(subscribers: DomainEventSubscribers): void {
+  addSubscribers(subscribers: DomainEventSubscribers): Promise<void> {
     subscribers.getSubscribers().forEach(subscriber => {
       subscriber.subscribedTo().forEach(domainEvent => {
         const eventName:string = domainEvent.EVENT_NAME;
@@ -28,5 +28,6 @@ export class InMemorySyncEventBus extends Map<string, Array<DomainEventSubscribe
         super.set(eventName, existingSubscribers);
       });
     });
+    return Promise.resolve();
   }
 }

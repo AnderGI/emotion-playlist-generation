@@ -12,10 +12,14 @@ import { ImageIdMother } from "../../domain/ImageIdMother.js";
 import { DomainEvent } from "../../../../../../src/contexts/shared/domain/bus/event/DomainEvent.js";
 import { EventBus } from "../../../../../../src/contexts/shared/domain/bus/event/EventBus.js";
 import { ImageCreatedDomainEvent } from "../../../../../../src/contexts/backoffice/image/domain/ImageCreatedDomainEvent.js";
+import { DomainEventSubscribers } from "../../../../../../src/contexts/shared/domain/bus/event/DomainEventSubscribers.js";
 
 describe('Image Saver', () => {
   const givenAMockImageRepository = (): ImageRepository => ({save: jest.fn((image: Image) => Promise.resolve())})
-  const givenAMockEventBus = (): EventBus => ({publish: jest.fn((events: Array<DomainEvent>) => Promise.resolve())})  
+  const givenAMockEventBus = (): EventBus => ({
+    publish: jest.fn((events: Array<DomainEvent>) => Promise.resolve()),
+    addSubscribers: jest.fn((subscribers: DomainEventSubscribers) => Promise.resolve())
+  })  
   const givenAnImageSaver = (repository:ImageRepository, eventBus:EventBus) : ImageSaver => new ImageSaver(repository, eventBus)
   const givenARandomImage = () : Image => ImageMother.random();
   const givenASaveImageCommandFromImage = (image:Image) : SaveImageCommand => SaveImageCommand.fromImagePrimitives(image.toPrimitives()); 
