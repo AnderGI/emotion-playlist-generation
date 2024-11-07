@@ -1,4 +1,4 @@
-import { ContainerBuilder, YamlFileLoader } from 'node-dependency-injection';
+import { ContainerBuilder, JsonFileLoader } from 'node-dependency-injection';
 import path from 'path';
 import { fileURLToPath } from "url";
 
@@ -8,9 +8,9 @@ const __dirname = path.dirname(__filename);
 
 // contenedor de dependencias
 const container = new ContainerBuilder();
-const loader = new YamlFileLoader(container);
+const loader = new JsonFileLoader(container);
 const env = process.env.NODE_ENV || 'dev';
 
-loader.load(`${__dirname}/application_${env}.yaml`);
+loader.load(`${__dirname}/application_${env}.json`);
 
 export default container;

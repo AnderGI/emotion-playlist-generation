@@ -1,0 +1,12 @@
+{
+  "services": {
+    "apps.backoffice.controllers.StatusHealhCheckGetController": {
+      "class": "../../../controllers/health-check/StatusHealhCheckGetController",
+      "arguments": []
+    },
+    "apps.backoffice.controllers.SubmitImagePutController": {
+      "class": "../../../controllers/submit-image/SubmitImagePutController",
+      "arguments": ["@shared.CommandBus"]
+    }
+  }
+}

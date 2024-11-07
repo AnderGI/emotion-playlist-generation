@@ -1,0 +1,20 @@
+{
+  "services": {
+    "shared.CommandHandlers": {
+      "class": "../../../../../contexts/shared/domain/bus/command/CommandHandlers",
+      "arguments": ["!tagged commandHandler"]
+    }, 
+    "shared.CommandBus": {
+      "class": "../../../../../contexts/shared/infrastructure/bus/command/InMemoryCommandBus",
+      "arguments": ["@shared.CommandHandlers"]
+    },
+    "shared.EventToSubscribers": {
+      "class": "../../../../../contexts/shared/domain/bus/event/EventToSubscribers",
+      "arguments": []
+    },
+    "shared.EventBus": {
+      "class": "../../../../../contexts/shared/infrastructure/bus/event/InMemorySyncEventBus",
+      "arguments": ["@shared.EventToSubscribers"]
+    }
+  }
+}
