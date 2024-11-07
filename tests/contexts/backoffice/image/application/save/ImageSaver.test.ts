@@ -13,38 +13,39 @@ import { DomainEvent } from "../../../../../../src/contexts/shared/domain/bus/ev
 import { EventBus } from "../../../../../../src/contexts/shared/domain/bus/event/EventBus.js";
 import { ImageCreatedDomainEvent } from "../../../../../../src/contexts/backoffice/image/domain/ImageCreatedDomainEvent.js";
 import { DomainEventSubscribers } from "../../../../../../src/contexts/shared/domain/bus/event/DomainEventSubscribers.js";
+import { ImageRepositoryMock } from "../../__mocks__/ImageRepositoryMock.js";
+import { EventBusMock } from "../../__mocks__/EventBusMock.js";
+
+const givenAMockImageRepository = () => new ImageRepositoryMock()
+const givenAMockEventBus = () => new EventBusMock();  
+const givenAnImageSaver = (repository:ImageRepository, eventBus:EventBus) : ImageSaver => new ImageSaver(repository, eventBus)
+const givenARandomImage = () : Image => ImageMother.random();
+const givenASaveImageCommandFromImage = (image:Image) : SaveImageCommand => SaveImageCommand.fromImagePrimitives(image.toPrimitives()); 
+const givenASaveImageCommandHandler = (saver:ImageSaver) : SaveImageCommandHandler => new SaveImageCommandHandler(saver);
 
 describe('Image Saver', () => {
-  const givenAMockImageRepository = (): ImageRepository => ({save: jest.fn((image: Image) => Promise.resolve())})
-  const givenAMockEventBus = (): EventBus => ({
-    publish: jest.fn((events: Array<DomainEvent>) => Promise.resolve()),
-    addSubscribers: jest.fn((subscribers: DomainEventSubscribers) => Promise.resolve())
-  })  
-  const givenAnImageSaver = (repository:ImageRepository, eventBus:EventBus) : ImageSaver => new ImageSaver(repository, eventBus)
-  const givenARandomImage = () : Image => ImageMother.random();
-  const givenASaveImageCommandFromImage = (image:Image) : SaveImageCommand => SaveImageCommand.fromImagePrimitives(image.toPrimitives()); 
-  const givenASaveImageCommandHandler = (saver:ImageSaver) : SaveImageCommandHandler => new SaveImageCommandHandler(saver);
+  let repository:ImageRepositoryMock; 
+  let eventBus:EventBusMock;
+  let saver:ImageSaver;
+  let image:Image;
+  let command:SaveImageCommand;
+  let handler:SaveImageCommandHandler;
 
+  beforeEach(() => {
+    repository = givenAMockImageRepository() 
+    eventBus = givenAMockEventBus();
+    saver = givenAnImageSaver(repository, eventBus);
+    image = givenARandomImage();
+    command = givenASaveImageCommandFromImage(image);
+    handler = givenASaveImageCommandHandler(saver);
 
+  })
+  
   it('Should save image', async () => {
-    const repository:ImageRepository = givenAMockImageRepository() 
-    const eventBus:EventBus = givenAMockEventBus();
-    const saver:ImageSaver = givenAnImageSaver(repository, eventBus);
-    const image:Image = givenARandomImage();
-    const command:SaveImageCommand = givenASaveImageCommandFromImage(image);
-    const handler:SaveImageCommandHandler = givenASaveImageCommandHandler(saver);
-
     await handler.handle(command);
     
-    expect(repository.save).toHaveBeenCalled()
-    expect(eventBus.publish).toHaveBeenCalled()
-    const imageCreatedDomainEvents:Array<ImageCreatedDomainEvent> = (eventBus.publish as jest.Mock).mock.calls[0][0] as Array<ImageCreatedDomainEvent>;
-    const createdImage:Image = (repository.save as jest.Mock).mock.calls[0][0] as Image; 
-
-    expect(repository.save).toHaveBeenCalledWith(createdImage)
-    expect(imageCreatedDomainEvents[0]).toBeInstanceOf(ImageCreatedDomainEvent)
-    expect(repository.save).toHaveBeenCalledTimes(1)
-    expect(eventBus.publish).toHaveBeenCalledTimes(1)
+    repository.assertSaveHasBeenCalledWithImage();
+    eventBus.assertPublishHasBeenCalledWithEvents();    
   })
 })
 
