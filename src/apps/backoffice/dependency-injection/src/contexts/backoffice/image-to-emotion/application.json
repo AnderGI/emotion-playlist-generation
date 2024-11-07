@@ -1,0 +1,12 @@
+{
+  "services": {
+    "backoffice.imageToEmotion.TagImageToEmotionOnImageCreated": {
+      "class": "../../../../../../../contexts/backoffice/imageToEmotion/application/tag/TagImageToEmotionOnImageCreated",
+      "arguments": [],
+      "tags": [
+        {"name": "domainEventSusbcriber"}
+      ]
+    }
+  }
+
+}

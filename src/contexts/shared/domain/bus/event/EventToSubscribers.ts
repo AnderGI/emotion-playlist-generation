@@ -1,4 +1,4 @@
-import { TagImageToEmotionOnImageCreated } from "../../../../backoffice/image-to-emotion/application/tag/TagImageToEmotionOnImageCreated.js";
+import { TagImageToEmotionOnImageCreated } from "../../../../backoffice/imageToEmotion/application/tag/TagImageToEmotionOnImageCreated.js";
 import { ImageCreatedDomainEvent } from "../../../../backoffice/image/domain/ImageCreatedDomainEvent.js";
 import { DomainEvent, DomainEventClass } from "./DomainEvent.js";
 import { DomainEventSubscriber } from "./DomainEventSubscriber.js";

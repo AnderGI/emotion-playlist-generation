@@ -8,13 +8,13 @@
       "class": "../../../../../contexts/shared/infrastructure/bus/command/InMemoryCommandBus",
       "arguments": ["@shared.CommandHandlers"]
     },
-    "shared.EventToSubscribers": {
-      "class": "../../../../../contexts/shared/domain/bus/event/EventToSubscribers",
+    "shared.DomainEventSubscribers": {
+      "class": "../../../../../contexts/shared/domain/bus/event/DomainEventSubscribers",
       "arguments": []
     },
     "shared.EventBus": {
       "class": "../../../../../contexts/shared/infrastructure/bus/event/InMemorySyncEventBus",
-      "arguments": ["@shared.EventToSubscribers"]
+      "arguments": ["@shared.DomainEventSubscribers"]
     }
   }
 }

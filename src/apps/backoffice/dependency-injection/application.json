@@ -2,6 +2,7 @@
   "imports": [
     { "resource": "./src/apps/application.json" },
     { "resource": "./src/shared/application.json" },
-    { "resource": "./src/contexts/backoffice/image/application.json" }
+    { "resource": "./src/contexts/backoffice/image/application.json" },
+    { "resource": "./src/contexts/backoffice/image-to-emotion/application.json" }
   ]
 }
