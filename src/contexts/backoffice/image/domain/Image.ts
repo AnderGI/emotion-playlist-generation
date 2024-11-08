@@ -20,6 +20,12 @@ export class Image extends AggregateRoot{
     return image; 
   }
    
+  public static fromPrimitives(imagePrimitives:ImagePrimitives): Image {
+    const {id, path} = imagePrimitives;
+    const image:Image = new Image(new ImageId(id),new ImagePath(path));
+    return image;
+  }
+
   public toPrimitives():ImagePrimitives {
     return {
       id: this.getId(),

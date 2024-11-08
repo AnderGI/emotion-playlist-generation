@@ -44,7 +44,7 @@ jobs:
       - name: Lint project
         run: npm run lint:src
 
-  test:
+  unit-test:
     name: Run Unit Tests
     runs-on: ubuntu-latest
     needs: lint
@@ -57,6 +57,20 @@ jobs:
 
       - name: Run unit tests
         run: npm run test:unit
+
+  integration-test:
+    name: Run Integrations Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run unit tests
+        run: npm run test:integration
 
   build:
     name: Build Project

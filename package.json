@@ -5,7 +5,8 @@
   "main": "src/main.ts",
   "type": "module",
   "scripts": {
-    "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --testPathPattern=./tests/contexts --config jest.config.mjs",
+    "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --testPathPattern=./tests/contexts/.*/.*/application/ --config jest.config.mjs",
+    "test:integration": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --testPathPattern=./tests/contexts/.*/.*/infrastructure/.+/ --config jest.config.mjs",
     "from:eslintrc:to:eslintconfig:migration": "npx @eslint/migrate-config .eslintrc.json",
     "apps:backoffice:server:watch": "npx tsx watch ./src/apps/backoffice/Start.ts",
     "lint:src": "npx eslint ./src/",
