@@ -1,5 +1,5 @@
+import { AfterAll, BeforeAll, Given, Then } from '@cucumber/cucumber';
 import assert from 'assert';
-import { AfterAll, BeforeAll, Given, Then } from 'cucumber';
 import request from 'supertest';
 
 import { MoocBackendApp } from '../../../../../../src/apps/mooc/backend/MoocBackendApp';
